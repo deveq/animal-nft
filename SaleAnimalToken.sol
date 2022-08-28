@@ -42,7 +42,6 @@ contract SaleAnimalToken {
         payable(animalTokenOwner).transfer(msg.value);
         mintAnimalTokenAddress.safeTransferFrom(animalTokenOwner, msg.sender, _animalTokenId);
 
-        // 
         animalTokenPrices[_animalTokenId] = 0;
 
         for (uint256 i = 0; i < onSaleAnimalTokenArray.length; i++) {
@@ -55,5 +54,9 @@ contract SaleAnimalToken {
 
     function getOnSaleAnimalTokenArrayLength() public view returns (uint256) {
         return onSaleAnimalTokenArray.length;
+    }
+
+    function getAnimalTokenPrice(uint256 _animalTokenId) public view returns (uint256) {
+        return animalTokenPrices[_animalTokenId];
     }
 }
