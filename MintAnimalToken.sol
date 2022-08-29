@@ -53,4 +53,8 @@ contract MintAnimalToken is ERC721Enumerable {
         saleAnimalToken = SaleAnimalToken(_saleAnimalToken);
     }
 
+    function getAnimalType(uint256 _animalTokenId) public view returns (uint256) {
+        return animalTypes[_animalTokenId];
+    }
+
 }

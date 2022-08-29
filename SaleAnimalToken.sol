@@ -59,4 +59,18 @@ contract SaleAnimalToken {
     function getAnimalTokenPrice(uint256 _animalTokenId) public view returns (uint256) {
         return animalTokenPrices[_animalTokenId];
     }
+
+    function getOnSaleAnimalTokens() public view returns (MintAnimalToken.AnimalTokenData[] memory) {
+
+        MintAnimalToken.AnimalTokenData[] memory animalTokenData = new MintAnimalToken.AnimalTokenData[](onSaleAnimalTokenArray.length);
+
+        for (uint256 i = 0; i < onSaleAnimalTokenArray.length; i++) {
+            uint256 animalTokenId = onSaleAnimalTokenArray[i];
+            uint256 animalType = mintAnimalTokenAddress.getAnimalType(animalTokenId);
+            uint256 animalPrice = animalTokenPrices[animalTokenId];
+            animalTokenData[i] = MintAnimalToken.AnimalTokenData(animalTokenId,animalType,animalPrice);
+        }
+
+        return animalTokenData;
+    }
 }
